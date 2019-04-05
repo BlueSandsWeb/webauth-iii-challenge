@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import requiresAuth from '../auth/requiresAuth';
+
 class Login extends React.Component {
   state = {
     username: '',
@@ -46,7 +48,7 @@ class Login extends React.Component {
     e.preventDefault();
     try {
       const user = this.state;
-      const login = await axios.post('http://localhost:5000/api/auth/login', user)
+      const login = await axios.post('/auth/login', user)
       console.log(login);
       const token = login.data.token;
       localStorage.setItem('token', token);
